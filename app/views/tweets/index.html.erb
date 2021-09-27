@@ -6,7 +6,8 @@
 
 <% @tweet.each do |e| %>
     <p> 
-        <%= e.message %> 
+        <%= e.message %><br>
+        <%= image_tag "/get_image/#{e.id}", width: '20%', height: '15%' %><br>
         <%= ((Time.current - e.tdate) / 60).to_i.to_s + "分前" %>
         <%= link_to '表示', "/tweets/#{e.id}" %> 
         <%= link_to '削除', "/tweets/#{e.id}", method: :delete %> 

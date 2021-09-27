@@ -10,7 +10,9 @@
 <% end %>
 
 <%= form_for @tweet, url: {action: :update} do |f| %>
-    <%= f.label :message, 'ツイート' %>
-    <%= f.text_field :message %>
+    <p><%= f.label :message, 'ツイート' %>
+    <%= f.text_field :message %></p>
+    <p><%= f.label :file, '画像' %>
+    <%= f.file_field :file %></p>
     <%= f.submit '更新' %>
 <% end %>

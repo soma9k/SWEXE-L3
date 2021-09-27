@@ -6,10 +6,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
   def create
-    @tweet = Tweet.new(message: params[:tweet][:message], tdate: Time.current)
+    file = params[:tweet][:file].read
+    @tweet = Tweet.new(message: params[:tweet][:message], file: file, tdate: Time.current)
     if @tweet.save
       flash[:notice] = '1レコード追加しました'
-      redirect_to root_path
+      redirect_to tweets_path
     else
       render 'new'
     end
@@ -22,18 +23,23 @@ class TweetsController < ApplicationController
     if tweet.destroy
       flash[:notice] = '1レコード追加しました'
     end
-    redirect_to root_path
+    redirect_to tweets_path
   end
   def edit
     @tweet = Tweet.find(params[:id])
   end
   def update
     @tweet = Tweet.find(params[:id])
-    if @tweet.update(message: params[:tweet][:message])
+    file = params[:tweet][:file].read
+    if @tweet.update(message: params[:tweet][:message], file: file)
       flash[:notice] = '1レコード更新しました'
-      redirect_to root_path
+      redirect_to tweets_path
     else
       render 'edit'
     end
+  end
+  def get_image
+    tweet = Tweet.find(params[:id]) 
+    send_data tweet.file, disposition: :inline, type: 'image/jpg'
   end
 end
