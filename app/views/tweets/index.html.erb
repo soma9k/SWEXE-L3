@@ -3,16 +3,33 @@
         <%= flash[:notice] %>
     </span>
 <% end %>
+<div id="page">
+    <div id="pageBody">
+        <% @tweet.each do |e| %>
+            <p> 
+                <%= e.message %><br>
+                <%= image_tag "/get_image/#{e.id}", width: '15%', height: '15%' %><br>
+                <%= ((Time.current - e.tdate) / 60).to_i.to_s + "分前" %>
+                <%= link_to '表示', "/tweets/#{e.id}" %> 
+                <%= link_to '削除', "/tweets/#{e.id}", method: :delete %> 
+                <%= link_to '編集', "/tweets/#{e.id}/edit" %> 
+            </p> 
+        <% end %>
+    </div>
+    <div id="pageSub">
+        <ul>
+            <li>ホーム</li>
+            <li>話題を検索</li>
+            <li>通知</li>
+            <li>メッセージ</li>
+            <li>ブックマーク</li>
+            <li>リスト</li>
+            <li>プロフィール</li>
+            <li>もっと見る</li>
+        </ul>
+        <section>
+            <%= link_to "ツイートする", '/tweets/new', class: 'btn btn-default' %>
+        </section>
+        </div>
+    </div>
 
-<% @tweet.each do |e| %>
-    <p> 
-        <%= e.message %><br>
-        <%= image_tag "/get_image/#{e.id}", width: '20%', height: '15%' %><br>
-        <%= ((Time.current - e.tdate) / 60).to_i.to_s + "分前" %>
-        <%= link_to '表示', "/tweets/#{e.id}" %> 
-        <%= link_to '削除', "/tweets/#{e.id}", method: :delete %> 
-        <%= link_to '編集', "/tweets/#{e.id}/edit" %> 
-    </p> 
-<% end %>
-
-<%= link_to 'ツイートする', '/tweets/new' %>

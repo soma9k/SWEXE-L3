@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+#page {
+    width: 980px;
+    margin: 0 auto;
+}
+
+#pageSub {
+    width: 220px;
+    float: left;
+}
+
+#pageBody {
+    width: 720px;
+    float: right;
+}
+
+#header {
+    width: 860px;
+    float: right;
+}
+
+.btn {
+  background-color: #55acee;
+  border: 2px solid #55acee;
+  border-radius: 50px;
+  color: #fff;
+  padding:4px 32px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn:hover {
+  background-color: #fff;
+  color: #55acee;
+}
