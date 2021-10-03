@@ -7,12 +7,13 @@
     <div id="pageBody">
         <% @tweet.each do |e| %>
             <p> 
+                @user名　　<%= e.tdate.strftime("%m/%d") %><br>
                 <%= e.message %><br>
                 <%= image_tag "/get_image/#{e.id}", width: '15%', height: '15%' %><br>
-                <%= ((Time.current - e.tdate) / 60).to_i.to_s + "分前" %>
                 <%= link_to '表示', "/tweets/#{e.id}" %> 
                 <%= link_to '削除', "/tweets/#{e.id}", method: :delete %> 
-                <%= link_to '編集', "/tweets/#{e.id}/edit" %> 
+                <%= link_to '編集', "/tweets/#{e.id}/edit" %><br>
+                <i class="far fa-comment"></i>&emsp;<i class="fas fa-retweet"></i>&emsp;<i class="far fa-heart"></i>
             </p> 
         <% end %>
     </div>
